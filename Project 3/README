@@ -1,0 +1,5 @@
+
+# Used the NS-2 network simulator to perform experiments on TCP variants (Tahoe, Reno, NewReno, Vegas) under various congestion, 
+  in terms of average application layer throughput or TCP goodput, dropped packet rate and latency
+  
+#  The network topologies were designed using TCL scripts and trace files were parsed using Python.
