@@ -1,0 +1,35 @@
+---------------------------------------------------------------------------------
+Run
+
+./rawhttpget [URL]
+
+---------------------------------------------------------------------------------
+
+Approach
+
+1. First 3-way handshake is performed with the server by setting SYN / ACK bits in TCP packet
+2. Once Handshake is successful, clients sends the HTTP request to server and waits for its ACK
+3. Then clients keeps receiving the incoming packet from the server and check the following conditions:
+   3.1 Is the source and destination port of incoming packet correct
+   3.2 Is FIN flag set in the packet
+4. After successfully receiving each packet, clients sends the ACK to the server
+5. Execution stops when the server sends the disconnect request by setting FIN flag
+6. Client sends the FIN + ACK packet to server and finally closes all the opened connections
+
+----------------------------------------------------------------------------------
+
+Challenges
+
+1. The biggest challenge was to properly update the Seq number and Ack number. Even a slight mistake could
+   make errors in packet handling
+2. Understanding the complete packet structure of TCP and IP and how to extract fields from it when incoming packet arrives
+3. Calculating the checksum for TCP and IP
+4. Handling Timeout, Checksum errors
+5. Wireshark was pretty useful to analyse the packets in-depth and finding mistakes in packet.
+
+----------------------------------------------------------------------------------
+
+Testing 
+
+md5sum [download file] [filename]
+
